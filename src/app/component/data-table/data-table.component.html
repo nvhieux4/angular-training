@@ -1,8 +1,8 @@
 <div class="table-container">
   <table>
     <thead>
-      <tr>
-        <th *ngFor="let column of columns" [style.width]="column.width">
+      <tr >
+        <th *ngFor="let column of columns" [ngStyle]="{'width':column.width, 'text-align': column.field=='action' ? 'center' : null}">
           {{ column.label }}
         </th>
       </tr>
@@ -19,9 +19,9 @@
             </ng-container>
             <ng-container *ngSwitchCase="'action'">
               <div class="group-btn">
-                <button class="edit" (click)="handleEditAccount(a)">Sửa</button>
+                <button class="edit" (click)="handleEditAccount(a)">Edit</button>
                 <button class="delete" (click)="handleClickDelete(a)">
-                  Xóa
+                  Delete
                 </button>
               </div>
             </ng-container>

@@ -15,7 +15,7 @@ table {
   position: relative;
 
   td {
-    padding: 5px 10px;
+    padding: 10px;
     //max-width: 350px;
     border-bottom: 1px solid rgba(27, 26, 26, 0.2);
 
@@ -26,9 +26,9 @@ table {
 
   th {
     border-bottom: 1px solid rgba(32, 32, 32, 0.2);
-    padding: 8px 10px;
+    padding: 14px 10px;
     text-align: left;
-    background-color: rgb(39, 153, 39);
+    background-color:  #1f3c1f;
     color: #fff;
     position: sticky;
     position: -webkit-sticky; /* for Safari */
@@ -47,13 +47,14 @@ table {
     justify-content: center;
 
     button {
-      padding: 5px 10px;
+      padding: 6px 12px;
       margin-right: 5px;
       border: none;
+      border-radius: 5px;
       cursor: pointer;
       transition: all 0.2s;
       &:hover {
-        opacity: 0.5;
+        opacity: 0.6;
       }
     }
 
@@ -63,7 +64,7 @@ table {
     }
 
     .delete {
-      background-color: red;
+      background-color: #d12e2e;
       color: #fff;
     }
   }
