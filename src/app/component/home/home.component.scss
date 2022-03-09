@@ -1,0 +1,47 @@
+.modal {
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 0;
+  right: 0;
+  background-color: rgba(5, 14, 37, 0.25);
+  display: flex;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.title {
+  font-size: 22px;
+  margin: 20px 0;
+  display: block;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.add-account {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #279927;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+}
+.search {
+  width: 70%;
+  padding: 10px 10px 0 10px;
+  border: 1px dashed #111;
+  background-color: #efe5e56e;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: -10px;
+    content: "Tìm kiếm";
+    left: 5px;
+    font-size: 14px;
+    color: #111;
+    background-color: #fff;
+  }
+}

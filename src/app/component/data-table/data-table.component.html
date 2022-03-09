@@ -1,0 +1,46 @@
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns" [style.width]="column.width">
+          {{ column.label }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of account; let index = index">
+        <td *ngFor="let column of columns">
+          <div [ngSwitch]="column.field">
+            <ng-container *ngSwitchCase="'stt'">
+              {{ startPage * total + index + 1 }}
+            </ng-container>
+            <ng-container *ngSwitchCase="'name'">
+              <span> {{ a.firstname }} {{ a.lastname }} </span>
+            </ng-container>
+            <ng-container *ngSwitchCase="'action'">
+              <div class="group-btn">
+                <button class="edit" (click)="handleEditAccount(a)">Sửa</button>
+                <button class="delete" (click)="handleClickDelete(a)">
+                  Xóa
+                </button>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              {{ a[column.field] }}
+            </ng-container>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-container>
+    <mat-paginator
+      style="font-size: 20px; margin: 0 30px 30px 0; color: #111"
+      [length]="length"
+      [pageSize]="total"
+      (page)="pageEvent($event)"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </ng-container>
+</div>

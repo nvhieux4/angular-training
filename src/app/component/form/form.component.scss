@@ -1,0 +1,41 @@
+.container {
+  width: 600px;
+  height: 570px;
+  background-color: #fff;
+  border-radius: 8px;
+  display: block;
+  margin: 30px auto;
+  text-align: center;
+
+  mat-form-field ~ mat-form-field {
+    margin-left: 15px;
+  }
+}
+
+button {
+  padding: 8px 15px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.edit {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.save {
+  background-color: rgb(39, 153, 39);
+  color: #fff;
+}
+
+.close {
+  background-color: red;
+  color: #fff;
+}

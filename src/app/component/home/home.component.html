@@ -1,0 +1,125 @@
+<h3 class="title">quản lý danh sách tài khoản ngân hàng</h3>
+<div class="account-list">
+  <div
+    style="
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      justify-content: space-around;
+    "
+  >
+    <div class="search">
+      <!-- <input type="text" [(ngModel)]="searchStr" (ngModelChange)="search()" /> -->
+      <mat-form-field
+        class="example-form-field"
+        appearance="fill"
+        style="margin-right: 8px"
+      >
+        <mat-label> Last Name</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="searchStr"
+          (ngModelChange)="search()"
+        />
+      </mat-form-field>
+      <mat-form-field
+        class="example-form-field"
+        appearance="fill"
+        style="margin-right: 8px"
+      >
+        <mat-label>Fist name</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="first_name"
+          (ngModelChange)="search()"
+        />
+      </mat-form-field>
+      <mat-form-field
+        class="example-form-field"
+        appearance="fill"
+        style="margin-right: 8px"
+      >
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="email"
+          (ngModelChange)="search()"
+        />
+      </mat-form-field>
+      <mat-form-field
+        class="example-form-field"
+        appearance="fill"
+        style="margin-right: 8px"
+      >
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="address"
+          (ngModelChange)="search()"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="margin-right: 8px">
+        <mat-label>Gender</mat-label>
+        <mat-select [(ngModel)]="gender" (ngModelChange)="search()">
+          <mat-option *ngFor="let gender of genders" [value]="gender">
+            {{ gender }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button (click)="openAddAccount()" class="add-account">Add Account</button>
+  </div>
+
+  <app-data-table
+    (newPage)="handleClickPage($event)"
+    (isLoaded)="onLoaded($event)"
+    [columns]="listColumns"
+    [total]="total"
+    [length]="accountLength"
+    [account]="account"
+    (accountDelete)="handleDeleteAccount($event)"
+    (clickEdit)="handleClickBtnEdit($event)"
+  ></app-data-table>
+</div>
+<div class="modal" *ngIf="isOpenEditAccount">
+  <app-form
+    (close)="handleClickClose($event)"
+    [isAccount]="isAccount"
+    (saveEdit)="handleSaveEdit($event)"
+    (add)="handleAdd($event)"
+  ></app-form>
+</div>
+<div class="modal" *ngIf="isLoading">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    style="margin: auto; display: block"
+    width="200px"
+    height="200px"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="xMidYMid"
+  >
+    <circle
+      cx="50"
+      cy="50"
+      fill="none"
+      stroke="#e15b64"
+      stroke-width="10"
+      r="35"
+      stroke-dasharray="164.93361431346415 56.97787143782138"
+    >
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        repeatCount="indefinite"
+        dur="1s"
+        values="0 50 50;360 50 50"
+        keyTimes="0;1"
+      ></animateTransform>
+    </circle>
+  </svg>
+</div>

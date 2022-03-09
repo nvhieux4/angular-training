@@ -1,0 +1,140 @@
+<div class="container">
+  <form class="add-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2
+      style="font-size: 25px; padding-top: 15px"
+      *ngIf="isAccount; else isDisplayTitle"
+    >
+      Edit account
+    </h2>
+    <ng-template #isDisplayTitle>
+      <h2 style="font-size: 25px; padding-top: 15px">Add account</h2>
+    </ng-template>
+    <div class="row-control">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First Name" formControlName="firstname" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Last Name"
+          formControlName="lastname"
+        />
+      </mat-form-field>
+    </div>
+    <div class="row-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Age</mat-label>
+        <input matInput placeholder="Age" type="number" formControlName="age" />
+        <mat-error *ngIf="form.controls.age.errors?.age">
+          Tuổi phải lớn hơn 0
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option *ngFor="let gender of genders" [value]="gender">
+            {{ gender }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Employer</mat-label>
+        <input matInput placeholder="Employer" formControlName="employer" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Balance</mat-label>
+        <input
+          matInput
+          placeholder="Balance"
+          type="number"
+          formControlName="balance"
+        />
+        <mat-error *ngIf="form.controls.balance.errors?.balance">
+          Số dư lớn hơn hoặc bằng 0
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Account Number</mat-label>
+        <input
+          matInput
+          placeholder="Account Number"
+          type="number"
+          formControlName="account_number"
+        />
+        <mat-error
+          *ngIf="form.controls.account_number.errors?.accountNumberExists"
+        >
+          Số tài khoản tồn tại
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" formControlName="email" />
+        <mat-error *ngIf="form.controls.email.errors?.email">
+          Không đúng định dạng email
+        </mat-error>
+        <mat-error
+          *ngIf="
+            !form.controls.email.errors?.email &&
+            form.controls.email.errors?.emailExists
+          "
+        >
+          Email trùng
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput placeholder="Address" formControlName="address" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input matInput placeholder="City" formControlName="city" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>State</mat-label>
+        <input matInput placeholder="State" formControlName="state" />
+      </mat-form-field>
+    </div>
+
+    <div class="row-control row-actions">
+      <ng-container *ngIf="isAccount; else isDisplay">
+        <div class="add-account" style="display: inline">
+          <button mat-raised-button type="submit" class="edit">
+            Save Edit
+          </button>
+        </div>
+      </ng-container>
+      <ng-template #isDisplay>
+        <ng-container>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="save"
+            [disabled]="form.invalid"
+          >
+            Save
+          </button>
+        </ng-container>
+      </ng-template>
+      <button
+        mat-raised-button
+        class="close"
+        type="button"
+        style="margin-left: 20px"
+        (click)="handleClose()"
+      >
+        Close
+      </button>
+    </div>
+  </form>
+</div>
